@@ -1,0 +1,28 @@
+body {
+    background: white;
+}
+#canvas1 {
+    
+    position: absolute;
+    border: 3px solid black;
+    width: 800px;
+    height: 700px;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+}
+button{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: transparent;
+    color: gray;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
