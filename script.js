@@ -1,8 +1,8 @@
 /**@type {HTMLCancasElement} */
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
-const CANVAS_WIDTH = canvas.width = 1024;
-const CANVAS_HEIGHT = canvas.height =1024;
+const CANVAS_WIDTH = canvas.width = 1000;
+const CANVAS_HEIGHT = canvas.height =1000;
 const numberOfEnemies = 1;
 const enemiesArray = [];
 const player = new Image();
@@ -36,23 +36,54 @@ class Player {
         if(gameFrame % 5 ===0 ){
         this.frame>6 ? this.frame = 0 : this.frame++;
        }
+       playerX= this.x;
+    playerY= this.y;
+
     }
     draw(){
         ctx.drawImage(player,this.frame * this.spriteWidth,0,this.spriteWidth,this.spriteHeight,this.x,this.y,this.width,this.height);
-        ctx.rect(playerX+50, playerY+50, 5, 5);
-        ctx.fill();
+        //ctx.rect(playerX, playerY, 5, 5);
+        //ctx.fill();
     }
-    move(angle1){
-        //move diagonally up
-       
-       
-       
-        if(angle1 > 0 && angle1 <45){
-       // this.x+=36;
-        //this.y-=21;
-        playerX= this.x;
-        playerY= this.y;
-        }
+    move(input){
+        
+        switch(input) {
+            case 'e':
+                //move diagonally up
+                this.x+=36;
+                this.y-=21;
+                playerX= this.x;
+                playerY= this.y;
+              break;
+            case 'a':
+                this.x-=36;
+                this.y+=21;
+                playerX= this.x;
+                playerY= this.y;
+              break;
+            case 'w':
+                this.y-=42;
+                playerY= this.y;
+              break;
+            case 's':
+                this.y+=42;
+                playerY= this.y;
+              break;
+            case 'd':
+                this.x+=36;
+                this.y+=21;
+                playerX= this.x;
+                playerY= this.y;
+              break;    
+            case 'q':
+                this.x-=36;
+                this.y-=21;
+                playerX= this.x;
+                playerY= this.y;
+              break;    
+            
+          }
+        
         
     }
    
@@ -90,62 +121,19 @@ function startGame(){
         player.update();
         player.draw(); 
     });
-
-
-   if(pp === false){
-
-    addEventListener("click", function(){
-        if(test === true){
-       
-        test=false;
-        }
-      });
-    addEventListener("mouseup", function(e){
-        if(test === false){
-            posX = e.clientX;
-            posY = e.clientY;
-            //console.log('posX'+posX);
-            //console.log('posY'+posY);
-           
-            enemiesArray.forEach(player => {
-                
-                
-                var myangle = angle(playerX+260,playerY-139+49,posX,posY);
-                console.log(myangle);
-                player.move(myangle);
-                
-
-                 });
-       
-        test=true;
-        }
-      });
-    }
     gameFrame++;
-    pp = false;
+    document.onkeydown = function (e) {
+        console.log('key down');
+        console.log(e);
+        enemiesArray.forEach(player => {
+            player.move(e.key);
+        });
+      };
     requestAnimationFrame(startGame);
 
 }
 
 
-function angle(){
-   
-
-   
-
-    const a = {
-        x: posX,
-        y: posY
-    };
-    
-    const p = {
-        x: playerX+260,
-        y: playerY-139+49
-    };
-    angleDeg = Math.atan2(a.y - p.y, a.x - p.x) * 180 / Math.PI; // 45 
-    return(angleDeg);
-
-}
 
 
 
