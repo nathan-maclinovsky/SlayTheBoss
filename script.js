@@ -30,6 +30,7 @@ const demonIdle = new Image();
 demonIdle.src = 'demon-idle.png';
 const demonAttack = new Image();
 demonAttack.src = 'demon-attack.png';
+let gameturn = 0;
 let gameFrame = 0;
 class Player {
     constructor(){
@@ -276,7 +277,7 @@ function startGame(){
 }
 
 function reset(){
-    console.log('ben');
+    console.log('benbruh');
     playerArray.forEach(player => {
         player.reset();
     });
