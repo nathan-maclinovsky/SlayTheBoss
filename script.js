@@ -32,6 +32,7 @@ const demonAttack = new Image();
 demonAttack.src = 'demon-attack.png';
 let gameturn = 0;
 let gameFrame = 0;
+let ben = 0;
 class Player {
     constructor(){
         this.x = 405;
@@ -214,7 +215,7 @@ class HellBeast{
 
 
 
-
+//test
 
 for(let i = 0; i< numberOfEnemies; i++){
     playerArray.push(new Player());
